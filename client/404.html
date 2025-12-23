@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting…</title>
+    <script type="text/javascript">
+      // GitHub Pages doesn't support SPA history routing out of the box.
+      // For a project page (https://user.github.io/<repo>/...), keep 1 segment.
+      // If you deploy as a user/organization page (https://user.github.io/), set this to 0.
+      var pathSegmentsToKeep = 1;
+
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.host +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + pathSegmentsToKeep)
+            .join("/") +
+          "/?/" +
+          l.pathname
+            .split("/")
+            .slice(1 + pathSegmentsToKeep)
+            .join("/")
+            .replace(/&/g, "~and~") +
+          (l.search
+            ? "&" + l.search.slice(1).replace(/&/g, "~and~")
+            : "") +
+          l.hash,
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
