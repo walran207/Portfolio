@@ -15,6 +15,8 @@ import { Link, useLocation } from "wouter";
  * - Glow effects and neon text highlights
  */
 
+const profileImageUrl = new URL("./Profile.jpg", import.meta.url).href;
+
 export default function Home() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const { elementRef: skillsRef, isVisible: skillsVisible } = useScrollAnimation();
@@ -112,7 +114,7 @@ export default function Home() {
                 <div className="absolute inset-4 rounded-full border-2 border-secondary/50" />
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center overflow-hidden">
                   <img
-                    src="src/pages/Profile.jpg"
+                    src={profileImageUrl}
                     alt="profile"
                     className="h-full w-full object-cover"
                   />

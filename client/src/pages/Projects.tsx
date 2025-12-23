@@ -27,6 +27,12 @@ type Project = {
   link?: string;
 };
 
+const assetUrl = (url: string) => {
+  if (/^https?:\/\//i.test(url)) return url;
+  const trimmed = url.replace(/^\/+/, "");
+  return `${import.meta.env.BASE_URL}${trimmed}`;
+};
+
 const projects: Project[] = [
   {
     id: "gradeko",
@@ -377,7 +383,7 @@ function ProjectCard({
     >
       <div className="relative h-72 w-full overflow-hidden">
         <img
-          src={project.image}
+          src={assetUrl(project.image)}
           alt={`${project.title} preview`}
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
@@ -457,7 +463,7 @@ function ProjectDetails({
                     aria-label={`Zoom ${project.title} screen ${idx + 1}`}
                   >
                     <img
-                      src={image}
+                      src={assetUrl(image)}
                       alt={`${project.title} screen ${idx + 1}`}
                       className="max-h-full max-w-full rounded-2xl object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                       loading="lazy"
@@ -567,7 +573,7 @@ function ZoomCarousel({ data }: { data: { images: string[]; index: number } }) {
               <CarouselItem key={image} className="h-full">
                 <div className="flex h-full items-center justify-center rounded-2xl bg-black/80 p-2 flex-shrink-0">
                   <img
-                    src={image}
+                    src={assetUrl(image)}
                     alt="Zoomed project visual"
                     className="max-h-full max-w-full rounded-xl object-contain"
                   />
